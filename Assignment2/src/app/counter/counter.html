@@ -1,0 +1,6 @@
+<div class="box-counter">
+    <p>Likes input</p>
+    <button class="btn unlike" (click)="decrement()">-</button>
+    <input id="likes" type="number" [value]="count" (change)="inputChange($event)" />
+    <button class="btn like" (click)="increment()">+</button>
+</div>

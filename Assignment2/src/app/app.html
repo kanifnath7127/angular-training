@@ -1,0 +1,15 @@
+<div class="container">
+  <!-- <h2>Welcome</h2> -->
+  <!-- <app-counter></app-counter> -->
+  <div class="shop-section">
+    <h3>Product Detail</h3>
+    <div *ngFor="let product of productList">
+      <app-product-details [id]=product.id [title]="product.title" [description]="product.description"
+        [price]=product.price [likes]=product.likes [imageUrl]="product.imageUrl"></app-product-details>
+    </div>
+  </div>
+
+  <!-- <app-product-details [products]="productList"></app-product-details> -->
+
+
+</div>

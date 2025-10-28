@@ -1,0 +1,21 @@
+.box-counter {
+  display: block;
+  text-align: center;
+}
+
+.like {
+  background-color: lightgreen;
+  min-width: 20px;
+}
+
+.unlike {
+  background-color: lightcoral;
+}
+
+input {
+  font-size: 14px;
+  margin: 0 5px;
+  width: 60px;
+  border: none;
+  border-bottom: 1px solid !important;
+}
