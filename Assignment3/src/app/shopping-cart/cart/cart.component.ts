@@ -3,23 +3,22 @@ import { Item as CartItem } from '../models/Item';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
+  styleUrl: './cart.component.scss',
 })
 export class CartComponent {
- cartItems: CartItem[] = [];
+  cartItems: CartItem[] = [];
   totalPrice = 0;
 
   constructor() {}
 
   loadCart() {}
 
-  removeItem(id: number) { }
+  removeItem(id: number) {}
 
-  clearCart() { }
+  clearCart() {}
 }

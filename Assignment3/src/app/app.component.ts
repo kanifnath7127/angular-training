@@ -8,9 +8,15 @@ import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, CatalogModule, ShoppingCartModule, MembershipModule],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    CatalogModule,
+    ShoppingCartModule,
+    MembershipModule,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'Transflower Store';
