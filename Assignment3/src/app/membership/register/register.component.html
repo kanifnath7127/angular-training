@@ -1,69 +1,130 @@
-<form>
-            <table>
-            <tr>
-                <td><label>FirstName:</label></td>
-                <input type="text" name="firstName" required minlength="3" maxlength="8" >
-              
-            </tr>
-                
-            <tr>
-                <td><label>LastName:</label></td>
-                <td><input type="text" name="lastName" ></td>
-            </tr>
-            <tr><td>
-                  <label>Email:</label></td>
-                  <input type="email" name="email"  required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$">
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card shadow">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Register</h2>
 
-            </tr>
-            <tr>
-                <td> <label>BirthDate:</label></td>
-                <td><input type="date" name="birthDate"  required ></td>
-            </tr>
-            <tr>
-                <td> <label>Age:</label></td>
-                <td><input type="number" name="age"  required ></td>
-            </tr>
-            <tr>
-                <td><label>PhoneNo:</label></td>
-                <td><input type="text" name="phoneNo"  required ></td>
-            </tr> 
-             <tr>
-                <td><label>Location:</label></td>
-                <select id="location" required  name="location"> 
-                   <option>Pune</option>
-                   <option>Mumbai</option>
-                   <option>Bangalore</option>
-                </select>
-               
-            </tr> 
-            <tr>
-                <td><label>Membership:</label></td>
-                <div>
-                    <label><input type="radio" name="memberShip"  required   > gold </label>
+                <app-loading *ngIf="isLoading" message="Processing registration..." [overlay]="true">
+                </app-loading>
+                <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName"
+                                [(ngModel)]="model.firstName" required minlength="3" maxlength="8" #firstName="ngModel"
+                                [class.is-invalid]="firstName.invalid && firstName.touched">
+                            <div class="invalid-feedback" *ngIf="firstName.invalid && firstName.touched">
+                                <div *ngIf="firstName.errors?.['required']">First name is required</div>
+                                <div *ngIf="firstName.errors?.['minlength']">First name must be at least 3 characters
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName"
+                                [(ngModel)]="model.lastName" required #lastName="ngModel"
+                                [class.is-invalid]="lastName.invalid && lastName.touched">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="model.email"
+                                required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+$" #email="ngModel"
+                                [class.is-invalid]="email.invalid && email.touched">
+                            <div class="invalid-feedback" *ngIf="email.invalid && email.touched">
+                                Please enter a valid email address
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="phoneNo" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phoneNo" name="phoneNo"
+                                [(ngModel)]="model.phoneNo" required #phone="ngModel"
+                                [class.is-invalid]="phone.invalid && phone.touched">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="birthDate" class="form-label">Birth Date</label>
+                            <input type="date" class="form-control" id="birthDate" name="birthDate"
+                                [(ngModel)]="model.birthDate" required #birthDate="ngModel"
+                                [class.is-invalid]="birthDate.invalid && birthDate.touched">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="age" name="age" [(ngModel)]="model.age"
+                                required #age="ngModel" [class.is-invalid]="age.invalid && age.touched">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="location" class="form-label">Location</label>
+                            <select class="form-select" id="location" name="location" [(ngModel)]="model.location"
+                                required>
+                                <option value="">Choose location...</option>
+                                <option>Pune</option>
+                                <option>Mumbai</option>
+                                <option>Bangalore</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label d-block">Membership</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="memberShip" id="gold" value="gold"
+                                    [(ngModel)]="model.memberShip" required>
+                                <label class="form-check-label" for="gold">Gold</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="memberShip" id="silver"
+                                    value="silver" [(ngModel)]="model.memberShip" required>
+                                <label class="form-check-label" for="silver">Silver</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="memberShip" id="platinum"
+                                    value="platinum" [(ngModel)]="model.memberShip" required>
+                                <label class="form-check-label" for="platinum">Platinum</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="isRegistered" name="isRegistered"
+                                    [(ngModel)]="model.isRegistered">
+                                <label class="form-check-label" for="isRegistered">Is Registered</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="social" class="form-label">Source of Information</label>
+                            <select class="form-select" id="social" name="social" [(ngModel)]="model.socialStatus"
+                                multiple>
+                                <option>Facebook</option>
+                                <option>Instagram</option>
+                                <option>Twitter</option>
+                                <option>LinkedIn</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary"
+                                    [disabled]="registerForm.invalid || isLoading">
+                                    <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"
+                                        aria-hidden="true"></span>
+                                    {{ isLoading ? 'Registering...' : 'Register' }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="text-center mt-3">
+                    <p class="mb-0">Already registered?
+                        <a routerLink="/sign-in" class="signin-link">Sign in here</a>
+                    </p>
                 </div>
-                <div>
-                    <label><input type="radio" name="memberShip"  required   > silver </label>
-                </div>
-                <div>
-                    <label><input type="radio" name="memberShip"  required  > platinum </label>
-                </div>
-            </tr>
-            <tr>
-                <td><label>Status</label></td>
-                <input type="checkbox" name="IsRegistered" value='false'>IsRegistered<br>
-            </tr>
-            <tr>
-                <td><label>Source Of Information:</label></td>
-                <select multiple name="social">
-                    <option>Facebook</option>
-                    <option>Instagram</option>
-                    <option>Twitter</option>
-                    <option>LinkedIn</option>
-                </select>
-            </tr>    
-            <tr>
-              <td><button type="submit"> Submit</button> 
-              </td>
-            </tr>
-      </table>
-    </form>
+            </div>
+        </div>
+    </div>
+</div>

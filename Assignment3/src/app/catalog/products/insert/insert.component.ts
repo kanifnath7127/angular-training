@@ -5,17 +5,16 @@ import { CounterComponent } from '../counter/counter.component';
 @Component({
   selector: 'app-insert',
   standalone: true,
-  imports: [FormsModule,CounterComponent],
+  imports: [FormsModule, CounterComponent],
   templateUrl: './insert.component.html',
-  styleUrl: './insert.component.css'
+  styleUrl: './insert.component.scss',
 })
 export class InsertComponent {
-
   product = {
     title: '',
     description: '',
     imageurl: '',
-    likes: 0
+    likes: 0,
   };
 
   onSubmit(form: any) {
@@ -28,5 +27,4 @@ export class InsertComponent {
   onUpdate(updatedLikes: number) {
     this.product.likes = updatedLikes;
   }
-
 }

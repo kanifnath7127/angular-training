@@ -1,24 +1,44 @@
-<div>
-  <h1>Login</h1>
+<div class="signin-container">
+  <div class="signin-wrapper">
+    <div class="card shadow">
+      <div class="card-body">
+        <h2 class="card-title text-center mb-4">Sign In</h2>
 
-  <div>
-    <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)" novalidate>
-      <table>
-        <tr>
-          <td><label>Email:</label></td>
-          <td>
-            <input type="email" name="userEmail" [(ngModel)]="user.email" required
-              pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" #userName="ngModel" />
-        </tr>
-        <tr>
-          <td><label>Password:</label></td>
-          <input type="password" name="userPassword" [(ngModel)]="user.password" #userPassword="ngModel" required />
+        <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)" novalidate>
+          <div class="mb-3">
+            <label for="userEmail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="userEmail" name="userEmail" [(ngModel)]="user.email"
+              #userName="ngModel" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+              [class.is-invalid]="userName.invalid && userName.touched">
+            <div class="invalid-feedback" *ngIf="userName.invalid && userName.touched">
+              <div *ngIf="userName.errors?.['required']">Email is required</div>
+              <div *ngIf="userName.errors?.['pattern']">Please enter a valid email address</div>
+            </div>
+          </div>
 
-        </tr>
-        <tr>
-          <td><button type="submit"> Submit</button> </td>
-        </tr>
-      </table>
-    </form>
+          <div class="mb-3">
+            <label for="userPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="userPassword" name="userPassword"
+              [(ngModel)]="user.password" #userPassword="ngModel" required
+              [class.is-invalid]="userPassword.invalid && userPassword.touched">
+            <div class="invalid-feedback" *ngIf="userPassword.invalid && userPassword.touched">
+              Password is required
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary" [disabled]="signInForm.invalid">
+              Sign In
+            </button>
+          </div>
+        </form>
+
+        <div class="text-center mt-3">
+          <p class="mb-0">Not registered yet?
+            <a routerLink="/register" class="register-link">Create an account</a>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
