@@ -1,5 +1,8 @@
-<div>
-    <button (click)="decrement()">-</button>
-    <span> {{count}}</span>
-    <button (click)="increment()">+</button>
+<div class="btn-group btn-group-sm">
+    <button type="button" class="btn btn-outline-danger px-2 py-1" (click)="decrement()" title="Dislike">
+        <i class="bi bi-hand-thumbs-down"></i>
+    </button>
+    <button type="button" class="btn btn-outline-primary px-2 py-1" (click)="increment()" title="Like">
+        <i class="bi bi-hand-thumbs-up"></i>
+    </button>
 </div>

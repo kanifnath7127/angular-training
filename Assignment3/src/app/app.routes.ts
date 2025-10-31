@@ -3,6 +3,7 @@ import { SignInComponent } from './membership/sign-in/sign-in.component';
 import { RegisterComponent } from './membership/register/register.component';
 import { VerifyEmailComponent } from './membership/verify-email/verify-email.component';
 import { CartComponent } from './shopping-cart/cart/cart.component';
+import { ListComponent } from './catalog/products/list/list.component';
 
 export const routes: Routes = [
   // default route it will redirect to path 'cart'
@@ -14,6 +15,8 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   // Verify Email route
   { path: 'verify-email/:token', component: VerifyEmailComponent },
+  // Catalog route
+  { path: 'catalog', component: ListComponent },
   // Cart route
   { path: 'cart', component: CartComponent },
 ];

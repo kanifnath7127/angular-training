@@ -28,7 +28,20 @@ export class CartService {
   }
 
   //Add Product to Cart
-  addToCart(item: CartItem): void {}
+  addToCart(item: CartItem): void {
+    let items = this.getCartItems();
+    const existingItem = items.find((i) => i.productId === item.productId);
+
+    if (existingItem) {
+      // If item exists, increment quantity
+      existingItem.quantity += 1;
+    } else {
+      // If item doesn't exist, add it to cart
+      items.push(item);
+    }
+
+    this.saveCart(items);
+  }
 
   //Get All Cart Items
   getCartItems(): CartItem[] {
